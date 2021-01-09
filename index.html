@@ -27,13 +27,16 @@
     <script>
         const stopwatchTimer = document.querySelector(".stopwatch h1");
         const stopwatchLaps = document.querySelector(".laps ul");
+
         const startBtn = document.querySelector("#start_btn");
         const stopBtn = document.querySelector("#stop_btn");
+        const lapBtn = document.querySelector("#lap_btn")
 
         let stopwatchId;
         let stopwatchTime = 0;
 
         stopBtn.setAttribute("disabled", "")
+        lapBtn.setAttribute("disabled", "")
 
         function handleStart() {
             stopwatchId = setInterval(function() {
@@ -43,12 +46,14 @@
 
             startBtn.setAttribute("disabled","");
             stopBtn.removeAttribute("disabled");
+            lapBtn.removeAttribute("disabled");
         }
 
         function handleStop() {
             clearInterval(stopwatchId);
 
             stopBtn.setAttribute("disabled","");
+            lapBtn.setAttribute("disabled","");
             startBtn.removeAttribute("disabled");
         }
 
@@ -72,7 +77,7 @@
 
         startBtn.addEventListener("click", handleStart);
         stopBtn.addEventListener("click", handleStop);
-        document.querySelector("#lap_btn").addEventListener("click", handleLap);
+        lapBtn.addEventListener("click", handleLap);
         document.querySelector("#clear_btn").addEventListener("click", handleClear);
 
     </script>
