@@ -29,23 +29,49 @@
     </div>
 
     <script>
-        function start() {
-            console.log("start");
+        const stopwatchTimer = document.querySelector(".stopwatch h1");
+        const startBtn = document.querySelector("#start_btn");
+        const stopBtn = document.querySelector("#stop_btn");
+
+        let stopwatchId;
+        let stopwatchTime = 0;
+
+        stopBtn.setAttribute("disabled", "")
+
+        function handleStart() {
+            stopwatchId = setInterval(function() {
+                stopwatchTime++;
+                clock();
+            }, 100);
+
+            startBtn.setAttribute("disabled","");
+            stopBtn.removeAttribute("disabled");
         }
-        function stop() {
-            console.log("stop");
+
+        function handleStop() {
+            clearInterval(stopwatchId);
+
+            stopBtn.setAttribute("disabled","");
+            startBtn.removeAttribute("disabled");
         }
-        function lap() {
+
+
+        function handleLap() {
             console.log("lap")
         }
-        function clear() {
+
+        function handleClear() {
             console.log("clear")
         }
 
-        document.querySelector("#start_btn").addEventListener("click", start);
-        document.querySelector("#stop_btn").addEventListener("click", stop);
-        document.querySelector("#lap_btn").addEventListener("click", lap);
-        document.querySelector("#clear_btn").addEventListener("click", clear);
+        function clock() {
+            stopwatchTimer.textContent = stopwatchTime;
+        }
+
+        startBtn.addEventListener("click", handleStart);
+        stopBtn.addEventListener("click", handleStop);
+        document.querySelector("#lap_btn").addEventListener("click", handleLap);
+        document.querySelector("#clear_btn").addEventListener("click", handleClear);
 
     </script>
 </body>
