@@ -11,10 +11,10 @@
 <body>
     <div class="stopwatch">
         <h1>00:00:00</h1>
-        <button class="stopwatchBtn">Start</button>
-        <button class="stopwatchBtn">Stop</button>
-        <button class="stopwatchBtn">Lap</button>
-        <button class="stopwatchBtn">Clear</button>
+        <button class="stopwatchBtn" id="start_btn">Start</button>
+        <button class="stopwatchBtn" id="stop_btn">Stop</button>
+        <button class="stopwatchBtn" id="lap_btn">Lap</button>
+        <button class="stopwatchBtn" id="clear_btn">Clear</button>
     </div>
 
     <div class="laps">
@@ -29,6 +29,23 @@
     </div>
 
     <script>
+        function start() {
+            console.log("start");
+        }
+        function stop() {
+            console.log("stop");
+        }
+        function lap() {
+            console.log("lap")
+        }
+        function clear() {
+            console.log("clear")
+        }
+
+        document.querySelector("#start_btn").addEventListener("click", start);
+        document.querySelector("#stop_btn").addEventListener("click", stop);
+        document.querySelector("#lap_btn").addEventListener("click", lap);
+        document.querySelector("#clear_btn").addEventListener("click", clear);
 
     </script>
 </body>
