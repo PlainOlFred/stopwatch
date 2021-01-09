@@ -35,14 +35,19 @@
         let stopwatchId;
         let stopwatchTime = 0;
 
-        stopBtn.setAttribute("disabled", "")
-        lapBtn.setAttribute("disabled", "")
+        
+
+        function reset() {
+            stopBtn.setAttribute("disabled", "");
+            lapBtn.setAttribute("disabled", "");
+            startBtn.removeAttribute("disabled");
+        }
 
         function handleStart() {
             stopwatchId = setInterval(function() {
                 stopwatchTime++;
                 clock();
-            }, 100);
+            }, 10);
 
             startBtn.setAttribute("disabled","");
             stopBtn.removeAttribute("disabled");
@@ -59,21 +64,38 @@
 
 
         function handleLap() {
-            console.log("lap")
             const newTime = document.createElement("li");
 
-            newTime.textContent = stopwatchTime;
+            newTime.textContent = formatTime(stopwatchTime);
             stopwatchLaps.append(newTime)
 
         }
 
         function handleClear() {
-            console.log("clear")
+            clearInterval(stopwatchId);
+
+            stopwatchTime = 0;
+            clock();
+
+            reset();
         }
 
         function clock() {
-            stopwatchTimer.textContent = stopwatchTime;
+            stopwatchTimer.textContent = formatTime(stopwatchTime);
         }
+
+        function formatTime(time) {
+            let  minute, seconds;
+
+            seconds = Math.floor(time/100)
+            
+            console.log(seconds)
+            
+        
+            return `${seconds}:${time.toString().slice(-2)}`;
+        }
+
+        reset();
 
         startBtn.addEventListener("click", handleStart);
         stopBtn.addEventListener("click", handleStop);
